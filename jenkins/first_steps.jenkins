@@ -13,12 +13,12 @@ pipeline {
     stages {
         stage("First step") {
             steps {
-                sh 'ssh a.maksymonko@192.168.0.121 \'hostname\''
+                sh 'ssh root@192.168.0.121 \'hostname\''
             }
         }
         stage("Second step") {
             steps {
-                sh 'ssh a.maksymonko@192.168.0.121 \'uptime\''
+                sh 'ssh root@192.168.0.121 \'uptime\''
             }
         }
     }
