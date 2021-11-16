@@ -14,7 +14,7 @@ pipeline {
         stage("First step") {
             steps {
                 echo "===============start building image================"
-                dir ('jenkins')
+                dir ('docker/toolbox')
                     sh 'docker build . '
             }
         }
