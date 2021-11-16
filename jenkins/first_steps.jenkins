@@ -12,12 +12,30 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("docker login"){
+            steps {
+                echo "=============== docker login ======================"
+                writeCredentials([usernamePassword(credentialsId: 'dockerhub_maksymonko', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
         stage("First step") {
             steps {
                 echo "===============start building image================"
                 dir ('docker/toolbox') {
-                    sh 'docker build -t toolbox:latest . '
+                    sh 'docker build -t maksymonko/toolbox:latest . '
                 }
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo "==============start pushing image=================="
+                sh '''
+                dosker push maksymonko/toolbox:latest
+                '''
             }
         }
         
