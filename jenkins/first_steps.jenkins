@@ -35,7 +35,7 @@ pipeline {
             steps {
                 echo "==============start pushing image=================="
                 sh '''
-                dosker push maksymonko/toolbox:latest
+                docker push maksymonko/toolbox:latest
                 '''
             }
         }
