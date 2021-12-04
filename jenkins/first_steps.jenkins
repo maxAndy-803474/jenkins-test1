@@ -16,7 +16,7 @@ pipeline {
                 echo "=============== docker install ======================"
                     sh '''
                     ssh -i "max-test-frankfurt.pem" ubuntu@18.194.123.118 \
-                    sudo apt-get update /
+                    sudo apt-get update \
                     sudo apt-get install ca-certificates curl gnupg lsb-release \
                     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
                     echo \
