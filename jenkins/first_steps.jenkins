@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo "=============== docker install ======================"
                     sh '''
-                    ssh -i "max-test-frankfurt.pem" ubuntu@18.194.123.118 \
+                    ssh root@18.194.123.118 \
                     ls
 
                     '''
