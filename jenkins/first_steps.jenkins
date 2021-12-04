@@ -1,3 +1,5 @@
+
+
 properties([disableConcurrentBuilds()])
 
 pipeline {
@@ -26,7 +28,7 @@ pipeline {
                     '''
                 }
             }
-        }
         
-    }
+        
+    
 }
