@@ -14,10 +14,10 @@ pipeline {
         stage('run commands on remote server') {
             steps { 
                 echo "-----------==================--------------"
-                
-                    sh 'docker-compose -H "ssh://root@3.69.144.82" up -d'
+                   dir('docker/toolbox'){
+                    sh 'docker-compose -H "ssh://root@3.69.144.82" down'
                 }
-            
+            }
         }
     }
 }
