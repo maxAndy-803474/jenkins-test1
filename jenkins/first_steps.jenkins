@@ -11,14 +11,19 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("create docker image"){
-            steps {
-                echo "=============== docker install ======================"
-                dir ('docker/toolbox')
-                    sh '''
-                        docker build .
-                    '''
-                }
-            } 
+        stage('run commands on remote server') {
+        steps { 
+            script {
+                def remote = [:]
+                remote.user = 'root'
+                remote.host = '3.69.144.82'
+                remote.name = 'ubuntu'
+                remote.identityFile = 'path for your ec2 private key'
+                remote.allowAnyHosts = 'true'
+                sshCommand remote: remote, command: 'docker-compose up -d'
+                
+            }
+        } 
+    }
 }
 }
