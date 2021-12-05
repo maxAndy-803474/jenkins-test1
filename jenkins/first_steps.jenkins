@@ -12,16 +12,12 @@ pipeline {
     }
     stages {
         stage('run commands on remote server') {
-        steps { 
-            script {
-                def remote = [:]
-                remote.user = 'root'
-                remote.host = '3.69.144.82'
-                remote.name = 'ubuntu'
-                remote.allowAnyHosts = 'true'
-                sshCommand remote: remote, command: 'docker-compose up -d'
-                
-            }
+            steps { 
+                echo "-----------==================--------------"
+                dir ('docker/toolbox') {
+                    sh 'docker-compose build .'
+                }
+            
         } 
     }
 }
