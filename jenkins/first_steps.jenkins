@@ -7,7 +7,7 @@ pipeline {
         label 'master'
         }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '3, artifactNumToKeepStr: '3'))
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
         timestamps()
     }
     stages {
@@ -15,7 +15,7 @@ pipeline {
             steps { 
                 echo "-----------==================--------------"
                    dir('docker/toolbox'){
-                    sh 'docker-compose -H "ssh://root@3.69.144.82" up -d'
+                    sh 'docker-compose -H "ssh://root@3.69.144.82" stop'
                 }
             }
         }
