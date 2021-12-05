@@ -18,7 +18,6 @@ pipeline {
                 remote.user = 'root'
                 remote.host = '3.69.144.82'
                 remote.name = 'ubuntu'
-                remote.identityFile = 'path for your ec2 private key'
                 remote.allowAnyHosts = 'true'
                 sshCommand remote: remote, command: 'docker-compose up -d'
                 
