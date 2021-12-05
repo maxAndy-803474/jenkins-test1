@@ -15,7 +15,7 @@ pipeline {
             steps { 
                 echo "-----------==================--------------"
                    dir('docker/toolbox'){
-                     sh 'docker-compose -H "ssh://root@3.69.144.82" up -d'
+                     sh 'docker-compose -H "ssh://root@3.69.144.82" down'
                 }
             }
         }
