@@ -15,7 +15,7 @@ pipeline {
             steps { 
                 echo "-----------==================--------------"
                 dir ('docker/toolbox') {
-                    sh 'docker-compose build .'
+                    sh 'docker-compose build '
                 }
             
         } 
