@@ -1,0 +1,51 @@
+---
+- name: DB
+  hosts: all
+  become: yes
+
+  tasks: 
+
+  - name: Update apt-get repo and cache
+    apt:
+     upgrade: yes
+     update_cache: yes
+  
+  - name: Install MariaDB
+    apt: 
+     name: mariadb-server
+     state: present
+
+  - name: copy 50-server.cnf
+    copy:
+      src: ./50-server.cnf
+      dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Create user with password, all database privileges and 'WITH GRANT OPTION' in db1 and db2
+    community.mysql.mysql_user:
+      state: present
+      name: max
+      password: password
+
+  - name: Create a new database with name 'wordpress'
+    mysql_db:
+      name: wordpress
+      state: present  
+
+  - name: Run several insert queries against db test_db in single transaction
+    community.mysql.mysql_query:
+      login_db: wordpress
+      query:
+      - CREATE USER 'max'@'3.69.144.82' IDENTIFIED BY 'password';
+      - GRANT ALL PRIVILEGES ON wordpress.* TO 'max'@'3.69.144.82';
+      - FLUSH PRIVILEGES;
+      single_transaction: yes
+
+      
+
+  handlers:
+  - name: Restart mysql
+    service: name=mysql state=restarted
+
