@@ -16,7 +16,7 @@ pipeline {
                 echo "=============== docker install ======================"
                 dir ('docker/toolbox')
                     sh '''
-                        docker-compose up
+                        docker build .
                     '''
                 }
             } 
